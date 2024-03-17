@@ -48,7 +48,7 @@ export const PageLayout = ({ children }) => {
                     </Content>
                 </Layout>
             </Content>
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </Layout >
 
     )

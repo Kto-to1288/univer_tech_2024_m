@@ -3,6 +3,8 @@ import { PageLayout } from './Components/Layout/Layout';
 import { Routes, Route, Link, useLocation, useNavigate, Navigate } from 'react-router-dom'
 import './App.css';
 import { Header } from './Components/Header/Header';
+import { Button } from 'antd';
+
 
 
 function App() {
@@ -72,7 +74,9 @@ const HomeComponent = ({ postsFunction, usersFunction }) => {
                 <h3>{post.title}</h3>
                 <p>{post.body}</p>
                 <Link to={`post/${post.id}`} state={{ name: user.username, postBody: post.body, postTitle: post.title, id: post.id }}>
-                  Перейти к комментариям
+                  <Button type="primary">
+                    Перейти к комментариям
+                  </Button>
                 </Link>
               </div>
             )
@@ -87,11 +91,16 @@ const HomeComments = ({ commentsFunction }) => {
   const postId = location.state.id
 
   return (
-    <div style={{ border: '1px solid #333', padding: '12px', borderRadius: '12px', gap: '8px' }}>
-      <h2>{location.state.name}</h2>
-      <h3>{location.state.postBody}</h3>
-      <p>{location.state.postTitle}</p>
-
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <h2>Post:</h2>
+      <div style={{ border: '1px solid #333', padding: '12px', borderRadius: '12px', gap: '8px' }}>
+        <h2>{location.state.name}</h2>
+        <h3>{location.state.postBody}</h3>
+        <p>{location.state.postTitle}</p>
+      </div>
+      {/* <br /> */}
+      <h2>Comments:</h2>
+      {/* <br /> */}
       {commentsFunction.map((comment, index) => {
         if (comment.postId === postId) {
           return (
